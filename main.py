@@ -7,9 +7,20 @@ from nltk.corpus import stopwords
 from collections import Counter
 import pandas as pd
 
+# Function to ensure necessary NLTK datasets are downloaded
+def download_nltk_data():
+    try:
+        nltk.data.find('tokenizers/punkt')
+    except LookupError:
+        nltk.download('punkt')
+
+    try:
+        nltk.data.find('corpora/stopwords')
+    except LookupError:
+        nltk.download('stopwords')
+
 # Download NLTK data
-nltk.download('punkt')
-nltk.download('stopwords')
+download_nltk_data()
 
 # Function to get SERP results
 def get_serp_results(query):
